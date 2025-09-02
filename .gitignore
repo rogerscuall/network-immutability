@@ -27,7 +27,6 @@ env/
 *.orig
 *.vault
 *.secret
-*.cfg
 
 # IDEs and editors
 .vscode/
