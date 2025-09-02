@@ -14,6 +14,15 @@ ethernet_interfaces:
   peer: DCX-LEAF1B
   peer_interface: Ethernet4
   peer_type: mlag_peer
+- name: Ethernet5
+  description: SERVER_DCX-leaf1-server1_PCI1
+  shutdown: false
+  channel_group:
+    id: 5
+    mode: active
+  peer: DCX-leaf1-server1
+  peer_interface: PCI1
+  peer_type: server
 - name: Ethernet1
   description: P2P_DCX-SPINE1_Ethernet1
   shutdown: false
@@ -34,15 +43,6 @@ ethernet_interfaces:
   peer_type: spine
   switchport:
     enabled: false
-- name: Ethernet5
-  description: SERVER_DCX-leaf1-server1_PCI1
-  shutdown: false
-  channel_group:
-    id: 5
-    mode: active
-  peer: DCX-leaf1-server1
-  peer_interface: PCI1
-  peer_type: server
 - name: Ethernet20
   description: UNUSED1
   shutdown: false
