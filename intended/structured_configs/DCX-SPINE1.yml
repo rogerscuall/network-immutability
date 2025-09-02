@@ -19,7 +19,7 @@ ethernet_interfaces:
   description: P2P_DCX-LEAF1B_Ethernet1
   shutdown: false
   mtu: 1600
-  ip_address: 10.255.255.4/31
+  ip_address: 10.255.255.6/31
   peer: DCX-LEAF1B
   peer_interface: Ethernet1
   peer_type: l3leaf
@@ -115,7 +115,7 @@ router_bgp:
     remote_as: '65101'
     peer: DCX-LEAF1A
     description: DCX-LEAF1A_Ethernet1
-  - ip_address: 10.255.255.5
+  - ip_address: 10.255.255.7
     peer_group: IPv4-UNDERLAY-PEERS
     remote_as: '65101'
     peer: DCX-LEAF1B

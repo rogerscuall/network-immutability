@@ -19,6 +19,7 @@
   - [Internal VLAN Allocation Policy Summary](#internal-vlan-allocation-policy-summary)
   - [Internal VLAN Allocation Policy Device Configuration](#internal-vlan-allocation-policy-device-configuration)
 - [Interfaces](#interfaces)
+  - [Ethernet Interfaces](#ethernet-interfaces)
   - [Loopback Interfaces](#loopback-interfaces)
 - [Routing](#routing)
   - [Service Routing Protocols Model](#service-routing-protocols-model)
@@ -196,6 +197,43 @@ vlan internal order ascending range 1006 1199
 
 ## Interfaces
 
+### Ethernet Interfaces
+
+#### Ethernet Interfaces Summary
+
+##### L2
+
+| Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
+| --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
+
+*Inherited from Port-Channel Interface
+
+##### IPv4
+
+| Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
+| --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
+| Ethernet1 | P2P_DCX-LEAF1A_Ethernet3 | - | 10.255.255.4/31 | default | 1600 | False | - | - |
+| Ethernet2 | P2P_DCX-LEAF1B_Ethernet3 | - | 10.255.255.10/31 | default | 1600 | False | - | - |
+
+#### Ethernet Interfaces Device Configuration
+
+```eos
+!
+interface Ethernet1
+   description P2P_DCX-LEAF1A_Ethernet3
+   no shutdown
+   mtu 1600
+   no switchport
+   ip address 10.255.255.4/31
+!
+interface Ethernet2
+   description P2P_DCX-LEAF1B_Ethernet3
+   no shutdown
+   mtu 1600
+   no switchport
+   ip address 10.255.255.10/31
+```
+
 ### Loopback Interfaces
 
 #### Loopback Interfaces Summary
@@ -312,6 +350,15 @@ ASN Notation: asplain
 | Send community | all |
 | Maximum routes | 12000 |
 
+#### BGP Neighbors
+
+| Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
+| -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
+| 10.255.0.3 | 65101 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
+| 10.255.0.4 | 65101 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
+| 10.255.255.5 | 65101 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+| 10.255.255.11 | 65101 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+
 #### Router BGP EVPN Address Family
 
 ##### EVPN Peer Groups
@@ -341,6 +388,18 @@ router bgp 65100
    neighbor IPv4-UNDERLAY-PEERS password 7 <removed>
    neighbor IPv4-UNDERLAY-PEERS send-community
    neighbor IPv4-UNDERLAY-PEERS maximum-routes 12000
+   neighbor 10.255.0.3 peer group EVPN-OVERLAY-PEERS
+   neighbor 10.255.0.3 remote-as 65101
+   neighbor 10.255.0.3 description DCX-LEAF1A_Loopback0
+   neighbor 10.255.0.4 peer group EVPN-OVERLAY-PEERS
+   neighbor 10.255.0.4 remote-as 65101
+   neighbor 10.255.0.4 description DCX-LEAF1B_Loopback0
+   neighbor 10.255.255.5 peer group IPv4-UNDERLAY-PEERS
+   neighbor 10.255.255.5 remote-as 65101
+   neighbor 10.255.255.5 description DCX-LEAF1A_Ethernet3
+   neighbor 10.255.255.11 peer group IPv4-UNDERLAY-PEERS
+   neighbor 10.255.255.11 remote-as 65101
+   neighbor 10.255.255.11 description DCX-LEAF1B_Ethernet3
    redistribute connected route-map RM-CONN-2-BGP
    !
    address-family evpn

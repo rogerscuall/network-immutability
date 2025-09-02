@@ -350,6 +350,7 @@ vlan 4094
 | --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
 | Ethernet1 | P2P_DCX-SPINE1_Ethernet1 | - | 10.255.255.1/31 | default | 1600 | False | - | - |
 | Ethernet2 | P2P_DCX-SPINE2_Ethernet1 | - | 10.255.255.3/31 | default | 1600 | False | - | - |
+| Ethernet3 | P2P_DCX-SPINE3_Ethernet1 | - | 10.255.255.5/31 | default | 1600 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
@@ -368,6 +369,13 @@ interface Ethernet2
    mtu 1600
    no switchport
    ip address 10.255.255.3/31
+!
+interface Ethernet3
+   description P2P_DCX-SPINE3_Ethernet1
+   no shutdown
+   mtu 1600
+   no switchport
+   ip address 10.255.255.5/31
 !
 interface Ethernet4
    description MLAG_DCX-LEAF1B_Ethernet4
@@ -837,9 +845,11 @@ ASN Notation: asplain
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
 | 10.255.0.1 | 65100 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 10.255.0.2 | 65100 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
+| 10.255.0.3 | 65100 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 10.255.1.97 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | default | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - | - |
 | 10.255.255.0 | 65100 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
 | 10.255.255.2 | 65100 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+| 10.255.255.4 | 65100 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
 | 10.255.1.97 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | VRF10 | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - | - |
 | 10.255.1.97 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | VRF11 | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - | - |
 | 10.255.1.97 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | VRF12 | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - | - |
@@ -907,6 +917,9 @@ router bgp 65101
    neighbor 10.255.0.2 peer group EVPN-OVERLAY-PEERS
    neighbor 10.255.0.2 remote-as 65100
    neighbor 10.255.0.2 description DCX-SPINE2_Loopback0
+   neighbor 10.255.0.3 peer group EVPN-OVERLAY-PEERS
+   neighbor 10.255.0.3 remote-as 65100
+   neighbor 10.255.0.3 description DCX-SPINE3_Loopback0
    neighbor 10.255.1.97 peer group MLAG-IPv4-UNDERLAY-PEER
    neighbor 10.255.1.97 description DCX-LEAF1B_Vlan4093
    neighbor 10.255.255.0 peer group IPv4-UNDERLAY-PEERS
@@ -915,6 +928,9 @@ router bgp 65101
    neighbor 10.255.255.2 peer group IPv4-UNDERLAY-PEERS
    neighbor 10.255.255.2 remote-as 65100
    neighbor 10.255.255.2 description DCX-SPINE2_Ethernet1
+   neighbor 10.255.255.4 peer group IPv4-UNDERLAY-PEERS
+   neighbor 10.255.255.4 remote-as 65100
+   neighbor 10.255.255.4 description DCX-SPINE3_Ethernet1
    redistribute connected route-map RM-CONN-2-BGP
    !
    vlan 11

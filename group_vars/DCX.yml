@@ -28,9 +28,9 @@ spine:
       id: 2
       mgmt_ip: 172.20.20.52/24
 
-    # - name: DCX-SPINE3
-    #   id: 3
-    #   mgmt_ip: 172.20.20.53/24
+    - name: DCX-SPINE3
+      id: 3
+      mgmt_ip: 172.20.20.53/24
 
 # L3 Leaf switch group
 l3leaf:
@@ -46,7 +46,7 @@ l3leaf:
     # Definition of pool of IPs to be used as Virtual Tunnel EndPoint (VXLAN origin and destination IPs)
     vtep_loopback_ipv4_pool: 10.255.1.0/27
     # Ansible hostname of the devices used to establish neighborship (IP assignments and BGP peering)
-    uplink_switches: ["DCX-SPINE1", "DCX-SPINE2"]
+    uplink_switches: ["DCX-SPINE1", "DCX-SPINE2", "DCX-SPINE3"]
     # Definition of pool of IPs to be used in P2P links
     uplink_ipv4_pool: 10.255.255.0/26
     # Definition of pool of IPs to be used for MLAG peer-link connectivity
@@ -76,14 +76,14 @@ l3leaf:
           uplink_switch_interfaces:
             - Ethernet1
             - Ethernet1
-            # - Ethernet1
+            - Ethernet1
         - name: DCX-LEAF1B
           id: 2
           mgmt_ip: 172.20.20.54/24
           uplink_switch_interfaces:
             - Ethernet2
             - Ethernet2
-            # - Ethernet2
+            - Ethernet2
 
     # - group: DCX_L3_LEAF2
     #   bgp_as: 65102

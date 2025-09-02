@@ -21,6 +21,7 @@
 | FABRIC | l3leaf | DCX-LEAF1B | 172.20.20.54/24 | vEOS-lab | Provisioned | - |
 | FABRIC | spine | DCX-SPINE1 | 172.20.20.51/24 | cEOS-lab | Provisioned | - |
 | FABRIC | spine | DCX-SPINE2 | 172.20.20.52/24 | cEOS-lab | Provisioned | - |
+| FABRIC | spine | DCX-SPINE3 | 172.20.20.53/24 | cEOS-lab | Provisioned | - |
 
 > Provision status is based on Ansible inventory declaration and do not represent real status from CloudVision.
 
@@ -35,9 +36,11 @@
 | ---- | ---- | -------------- | --------- | ----------| -------------- |
 | l3leaf | DCX-LEAF1A | Ethernet1 | spine | DCX-SPINE1 | Ethernet1 |
 | l3leaf | DCX-LEAF1A | Ethernet2 | spine | DCX-SPINE2 | Ethernet1 |
+| l3leaf | DCX-LEAF1A | Ethernet3 | spine | DCX-SPINE3 | Ethernet1 |
 | l3leaf | DCX-LEAF1A | Ethernet4 | mlag_peer | DCX-LEAF1B | Ethernet4 |
 | l3leaf | DCX-LEAF1B | Ethernet1 | spine | DCX-SPINE1 | Ethernet2 |
 | l3leaf | DCX-LEAF1B | Ethernet2 | spine | DCX-SPINE2 | Ethernet2 |
+| l3leaf | DCX-LEAF1B | Ethernet3 | spine | DCX-SPINE3 | Ethernet2 |
 
 ## Fabric IP Allocation
 
@@ -45,7 +48,7 @@
 
 | Uplink IPv4 Pool | Available Addresses | Assigned addresses | Assigned Address % |
 | ---------------- | ------------------- | ------------------ | ------------------ |
-| 10.255.255.0/26 | 64 | 8 | 12.5 % |
+| 10.255.255.0/26 | 64 | 12 | 18.75 % |
 
 ### Point-To-Point Links Node Allocation
 
@@ -53,14 +56,16 @@
 | ---- | -------------- | --------------- | --------- | -------------- | --------------- |
 | DCX-LEAF1A | Ethernet1 | 10.255.255.1/31 | DCX-SPINE1 | Ethernet1 | 10.255.255.0/31 |
 | DCX-LEAF1A | Ethernet2 | 10.255.255.3/31 | DCX-SPINE2 | Ethernet1 | 10.255.255.2/31 |
-| DCX-LEAF1B | Ethernet1 | 10.255.255.5/31 | DCX-SPINE1 | Ethernet2 | 10.255.255.4/31 |
-| DCX-LEAF1B | Ethernet2 | 10.255.255.7/31 | DCX-SPINE2 | Ethernet2 | 10.255.255.6/31 |
+| DCX-LEAF1A | Ethernet3 | 10.255.255.5/31 | DCX-SPINE3 | Ethernet1 | 10.255.255.4/31 |
+| DCX-LEAF1B | Ethernet1 | 10.255.255.7/31 | DCX-SPINE1 | Ethernet2 | 10.255.255.6/31 |
+| DCX-LEAF1B | Ethernet2 | 10.255.255.9/31 | DCX-SPINE2 | Ethernet2 | 10.255.255.8/31 |
+| DCX-LEAF1B | Ethernet3 | 10.255.255.11/31 | DCX-SPINE3 | Ethernet2 | 10.255.255.10/31 |
 
 ### Loopback Interfaces (BGP EVPN Peering)
 
 | Loopback Pool | Available Addresses | Assigned addresses | Assigned Address % |
 | ------------- | ------------------- | ------------------ | ------------------ |
-| 10.255.0.0/27 | 32 | 4 | 12.5 % |
+| 10.255.0.0/27 | 32 | 5 | 15.63 % |
 
 ### Loopback0 Interfaces Node Allocation
 
@@ -70,6 +75,7 @@
 | FABRIC | DCX-LEAF1B | 10.255.0.4/32 |
 | FABRIC | DCX-SPINE1 | 10.255.0.1/32 |
 | FABRIC | DCX-SPINE2 | 10.255.0.2/32 |
+| FABRIC | DCX-SPINE3 | 10.255.0.3/32 |
 
 ### VTEP Loopback VXLAN Tunnel Source Interfaces (VTEPs Only)
 

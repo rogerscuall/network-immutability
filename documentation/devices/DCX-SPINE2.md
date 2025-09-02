@@ -213,7 +213,7 @@ vlan internal order ascending range 1006 1199
 | Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
 | Ethernet1 | P2P_DCX-LEAF1A_Ethernet2 | - | 10.255.255.2/31 | default | 1600 | False | - | - |
-| Ethernet2 | P2P_DCX-LEAF1B_Ethernet2 | - | 10.255.255.6/31 | default | 1600 | False | - | - |
+| Ethernet2 | P2P_DCX-LEAF1B_Ethernet2 | - | 10.255.255.8/31 | default | 1600 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
@@ -231,7 +231,7 @@ interface Ethernet2
    no shutdown
    mtu 1600
    no switchport
-   ip address 10.255.255.6/31
+   ip address 10.255.255.8/31
 ```
 
 ### Loopback Interfaces
@@ -357,7 +357,7 @@ ASN Notation: asplain
 | 10.255.0.3 | 65101 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 10.255.0.4 | 65101 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 10.255.255.3 | 65101 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
-| 10.255.255.7 | 65101 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+| 10.255.255.9 | 65101 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
 
 #### Router BGP EVPN Address Family
 
@@ -397,9 +397,9 @@ router bgp 65100
    neighbor 10.255.255.3 peer group IPv4-UNDERLAY-PEERS
    neighbor 10.255.255.3 remote-as 65101
    neighbor 10.255.255.3 description DCX-LEAF1A_Ethernet2
-   neighbor 10.255.255.7 peer group IPv4-UNDERLAY-PEERS
-   neighbor 10.255.255.7 remote-as 65101
-   neighbor 10.255.255.7 description DCX-LEAF1B_Ethernet2
+   neighbor 10.255.255.9 peer group IPv4-UNDERLAY-PEERS
+   neighbor 10.255.255.9 remote-as 65101
+   neighbor 10.255.255.9 description DCX-LEAF1B_Ethernet2
    redistribute connected route-map RM-CONN-2-BGP
    !
    address-family evpn
