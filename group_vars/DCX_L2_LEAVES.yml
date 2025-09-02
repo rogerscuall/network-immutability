@@ -1,0 +1,11 @@
+---
+type: l2leaf
+# network_ports:
+#   - switches:
+#       - DCX-L2LEAF1A
+#       - DCX-L2LEAF2A
+#     switch_ports:
+#       - Eth5
+#     description: "downstream"
+#     enabled: true
+#     mode: "trunk"

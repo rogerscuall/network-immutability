@@ -1,0 +1,14 @@
+---
+type: l3leaf
+network_ports:
+  - switches:
+      - DCX-LEAF1A
+      - DCX-LEAF1B
+      - DCX-LEAF2A
+      - DCX-LEAF2B
+    description: "UNUSED1"
+    mode: access
+    enabled: true
+    vlans: 50
+    switch_ports:
+      - Ethernet20-30
