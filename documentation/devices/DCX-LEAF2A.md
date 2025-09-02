@@ -331,7 +331,6 @@ vlan 4094
 | Ethernet3 | MLAG_DCX-LEAF2B_Ethernet3 | *trunk | *- | *- | *MLAG | 3 |
 | Ethernet4 | MLAG_DCX-LEAF2B_Ethernet4 | *trunk | *- | *- | *MLAG | 3 |
 | Ethernet5 | SERVER_DCX-leaf2-server1_PCI1 | *trunk | *11-12,21-22 | *4092 | *- | 5 |
-| Ethernet8 | L2_DCX-L2LEAF2A_Ethernet1 | *trunk | *11-13,21,25,31,3401-3403 | *- | *- | 8 |
 | Ethernet20 | UNUSED1 | access | 50 | - | - | - |
 | Ethernet21 | UNUSED1 | access | 50 | - | - | - |
 | Ethernet22 | UNUSED1 | access | 50 | - | - | - |
@@ -385,11 +384,6 @@ interface Ethernet5
    description SERVER_DCX-leaf2-server1_PCI1
    no shutdown
    channel-group 5 mode active
-!
-interface Ethernet8
-   description L2_DCX-L2LEAF2A_Ethernet1
-   no shutdown
-   channel-group 8 mode active
 !
 interface Ethernet20
    description UNUSED1
@@ -479,7 +473,6 @@ interface Ethernet30
 | --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
 | Port-Channel3 | MLAG_DCX-LEAF2B_Port-Channel3 | trunk | - | - | MLAG | - | - | - | - |
 | Port-Channel5 | PortChannel DCX-leaf2-server1 | trunk | 11-12,21-22 | 4092 | - | - | - | 5 | - |
-| Port-Channel8 | L2_DCX-L2LEAF2A_Port-Channel1 | trunk | 11-13,21,25,31,3401-3403 | - | - | - | - | 8 | - |
 
 #### Port-Channel Interfaces Device Configuration
 
@@ -501,14 +494,6 @@ interface Port-Channel5
    switchport
    mlag 5
    spanning-tree portfast
-!
-interface Port-Channel8
-   description L2_DCX-L2LEAF2A_Port-Channel1
-   no shutdown
-   switchport trunk allowed vlan 11-13,21,25,31,3401-3403
-   switchport mode trunk
-   switchport
-   mlag 8
 ```
 
 ### Loopback Interfaces
