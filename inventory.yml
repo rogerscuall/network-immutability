@@ -1,0 +1,61 @@
+---
+all:
+  children:
+    CLOUDVISION:
+      hosts:
+        cvp:
+          ansible_connection: httpapi
+          ansible_host: 10-255-15-211.presidio.act.arista.com
+          ansible_httpapi_use_ssl: true
+          ansible_httpapi_validate_certs: false
+          ansible_network_os: eos
+          ansible_password: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaWQiOjc1MjcwODc2ODY5ODU3MTE4MzgsImRzbiI6InRva2VuX2N2cF9kZXBsb3kiLCJkc3QiOiJhY2NvdW50IiwiZXhwIjoxNzgzNzAxNjkwLCJpYXQiOjE3NTI3NzA1MDYsIm9naSI6Mywib2duIjoiRGVmYXVsdCIsInNpZCI6IjVkODVkNzc4Y2YwZDEyZmQ0ZWM4ZmQ3MzM4OTc1OGZlMzI0YTc2Njg5OTMxZDUxNjAwMTYxMjI0MGRmNzliNzgtU0s5T0lFSHN5Y3VrQzdSR3daM3hKUWVlZmk1N1lRckpseXNxeVFxaSJ9.VANqqAzfXY5hIS5zKrTAWoUVfVvgi_drsAuBrcwisr86wJ8IBE0-EMwnx863z6BTNwnVshnRNhExmjr2O71oTni8aktZ0xMd1hHfIpF5vNX7nwd9vm4gXZXhzfO7p7tZZi1QUjjpbQOlkJHJ1_6_VN6ayPfoLfhaaKcWMgWVJ9s0fehBDPLdT86o7Sv8sdgIRnVuKvBQtU-Ued579wX5OENII2tb4Sn2DEEECX1shL0kXYgQ7wue0-Oj64jHcH5j2MNca5fnl8Jaw7p98j7_H-3dP8S8X0qnYTjlMh1z5cryCojg4nEYf9uWi6o-ef0I8P5yJn7oLECfzz_OhXDvKjXsBUitoknoa-GGFVCSGOMUHJVimsXlm6APglTtELlhmvB0HnxEwUSHZXzbhhWhPi1M709h1co3ZrgdlyH2V1b7bc2UZFBgUhKflQO3Yddp7eSVvccsJfTIWAsqT-GGhbWByjvK6g0VATK7mDEVJT9AuihP31hXV1hq_xNUueqjfctuNmnrccGxTOo8M671LjII_VooEu6vZnGTwPGLN7B2hxM48kSi1i2JV6wIQghyLmcRR8rb41K4MSpQVuBzYbwk-3bgWdYYv_E88u5SIMv0VFlE8Ii2nzVgGbYXuh7kSV1FGOY4DeOxxWkV_PcQWtrqRqEAegjkKi2k9neLFOs
+          ansible_python_interpreter: $(which python3)
+          ansible_user: cvaas
+
+    FABRIC:
+      vars:
+        ansible_user: ansible
+        ansible_password: ansible
+        ansible_connection: httpapi
+        ansible_httpapi_pass: ansible
+        ansible_httpapi_password: ansible
+        ansible_become: true
+        ansible_become_password: ansible
+        ansible_httpapi_port: 443
+        ansible_httpapi_use_ssl: true
+      children:
+        DCX:
+          children:
+            DCX_SPINES:
+              hosts:
+                DCX-SPINE1:
+                  ansible_host: 10.255.15.204
+                DCX-SPINE2:
+                  ansible_host: 10.255.15.206
+            DCX_L3_LEAVES:
+              hosts:
+                DCX-LEAF1A:
+                  ansible_host: 10.255.15.199
+                DCX-LEAF1B:
+                  ansible_host: 10.255.15.200
+                DCX-LEAF2A:
+                  ansible_host: 10.255.15.207
+                DCX-LEAF2B:
+                  ansible_host: 10.255.15.201
+            DCX_L2_LEAVES:
+              hosts:
+                DCX-L2LEAF1A:
+                  ansible_host: 10.255.15.202
+                DCX-L2LEAF2A:
+                  ansible_host: 10.255.15.210
+
+    NETWORK_SERVICES:
+      children:
+        DCX_L3_LEAVES:
+        DCX_L2_LEAVES:
+    CONNECTED_ENDPOINTS:
+      children:
+        DCX_L3_LEAVES:
+        DCX_L2_LEAVES:
+

@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+*.sqlite3
+.env
+.venv/
+venv/
+ENV/
+env/
+*.db
+*.bak
+
+# Ansible
+*.retry
+*.log
+*.tmp
+*.bak
+*.swp
+*.orig
+*.vault
+*.secret
+*.cfg
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS files
+.DS_Store
+Thumbs.db
