@@ -39,10 +39,10 @@ all:
                   ansible_host: 10.255.15.199
                 DCX-LEAF1B:
                   ansible_host: 10.255.15.200
-                # DCX-LEAF2A:
-                #   ansible_host: 10.255.15.207
-                # DCX-LEAF2B:
-                #   ansible_host: 10.255.15.201
+                DCX-LEAF2A:
+                  ansible_host: 10.255.15.207
+                DCX-LEAF2B:
+                  ansible_host: 10.255.15.201
 
     NETWORK_SERVICES:
       children:

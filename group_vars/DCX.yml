@@ -79,19 +79,19 @@ l3leaf:
             - Ethernet2
             - Ethernet2
 
-    # - group: DCX_L3_LEAF2
-    #   bgp_as: 65102
-    #   nodes:
-    #     - name: DCX-LEAF2A
-    #       id: 3
-    #       mgmt_ip: 172.20.20.55/24
-    #       uplink_switch_interfaces:
-    #         - Ethernet3
-    #         - Ethernet3
-    #     - name: DCX-LEAF2B
-    #       id: 4
-    #       mgmt_ip: 172.20.20.56/24
-    #       uplink_switch_interfaces:
-    #         - Ethernet4
-    #         - Ethernet4
+    - group: DCX_L3_LEAF2
+      bgp_as: 65102
+      nodes:
+        - name: DCX-LEAF2A
+          id: 3
+          mgmt_ip: 172.20.20.55/24
+          uplink_switch_interfaces:
+            - Ethernet3
+            - Ethernet3
+        - name: DCX-LEAF2B
+          id: 4
+          mgmt_ip: 172.20.20.56/24
+          uplink_switch_interfaces:
+            - Ethernet4
+            - Ethernet4
 
