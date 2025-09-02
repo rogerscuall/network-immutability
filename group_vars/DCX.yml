@@ -79,46 +79,19 @@ l3leaf:
             - Ethernet2
             - Ethernet2
 
-    - group: DCX_L3_LEAF2
-      bgp_as: 65102
-      nodes:
-        - name: DCX-LEAF2A
-          id: 3
-          mgmt_ip: 172.20.20.55/24
-          uplink_switch_interfaces:
-            - Ethernet3
-            - Ethernet3
-        - name: DCX-LEAF2B
-          id: 4
-          mgmt_ip: 172.20.20.56/24
-          uplink_switch_interfaces:
-            - Ethernet4
-            - Ethernet4
+    # - group: DCX_L3_LEAF2
+    #   bgp_as: 65102
+    #   nodes:
+    #     - name: DCX-LEAF2A
+    #       id: 3
+    #       mgmt_ip: 172.20.20.55/24
+    #       uplink_switch_interfaces:
+    #         - Ethernet3
+    #         - Ethernet3
+    #     - name: DCX-LEAF2B
+    #       id: 4
+    #       mgmt_ip: 172.20.20.56/24
+    #       uplink_switch_interfaces:
+    #         - Ethernet4
+    #         - Ethernet4
 
-# L2 Leaf switch group
-l2leaf:
-  defaults:
-    platform: vEOS-lab
-    spanning_tree_mode: mstp
-    raw_eos_cli: agent KernelFib environment KERNELFIB_PROGRAM_ALL_ECMP='true'  
-
-  node_groups:
-    - group: DCX_L2_LEAF1
-      uplink_switches: ["DCX-LEAF1A", "DCX-LEAF1B"]
-      nodes:
-        - name: DCX-L2LEAF1A
-          id: 1
-          mgmt_ip: 172.20.20.57/24
-          uplink_switch_interfaces:
-            - Ethernet8
-            - Ethernet8
-
-    - group: DCX_L2_LEAF2
-      uplink_switches: ["DCX-LEAF2A", "DCX-LEAF2B"]
-      nodes:
-        - name: DCX-L2LEAF2A
-          id: 2
-          mgmt_ip: 172.20.20.58/24
-          uplink_switch_interfaces:
-            - Ethernet8
-            - Ethernet8

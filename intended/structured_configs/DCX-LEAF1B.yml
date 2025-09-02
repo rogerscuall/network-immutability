@@ -43,15 +43,6 @@ ethernet_interfaces:
   peer_type: spine
   switchport:
     enabled: false
-- name: Ethernet8
-  description: L2_DCX-L2LEAF1A_Ethernet2
-  shutdown: false
-  channel_group:
-    id: 8
-    mode: active
-  peer: DCX-L2LEAF1A
-  peer_interface: Ethernet2
-  peer_type: l2leaf
 - name: Ethernet5
   description: SERVER_DCX-leaf1-server1_PCI2
   shutdown: false
@@ -229,15 +220,6 @@ port_channel_interfaces:
     trunk:
       groups:
       - MLAG
-- name: Port-Channel8
-  description: L2_DCX-L2LEAF1A_Port-Channel1
-  shutdown: false
-  mlag: 8
-  switchport:
-    enabled: true
-    mode: trunk
-    trunk:
-      allowed_vlan: 11-13,21,25,31,3401-3403
 - name: Port-Channel5
   description: PortChannel DCX-leaf1-server1
   shutdown: false
