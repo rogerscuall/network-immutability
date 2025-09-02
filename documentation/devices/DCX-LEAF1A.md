@@ -188,7 +188,7 @@ daemon TerminAttr
 
 | Domain-id | Local-interface | Peer-address | Peer-link |
 | --------- | --------------- | ------------ | --------- |
-| DCX_L3_LEAF1 | Vlan4094 | 10.255.1.65 | Port-Channel3 |
+| DCX_L3_LEAF1 | Vlan4094 | 10.255.1.65 | Port-Channel4 |
 
 Dual primary detection is disabled.
 
@@ -200,7 +200,7 @@ mlag configuration
    domain-id DCX_L3_LEAF1
    local-interface Vlan4094
    peer-address 10.255.1.65
-   peer-link Port-Channel3
+   peer-link Port-Channel4
    reload-delay mlag 300
    reload-delay non-mlag 330
 ```
@@ -328,8 +328,7 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet3 | MLAG_DCX-LEAF1B_Ethernet3 | *trunk | *- | *- | *MLAG | 3 |
-| Ethernet4 | MLAG_DCX-LEAF1B_Ethernet4 | *trunk | *- | *- | *MLAG | 3 |
+| Ethernet4 | MLAG_DCX-LEAF1B_Ethernet4 | *trunk | *- | *- | *MLAG | 4 |
 | Ethernet5 | SERVER_DCX-leaf1-server1_PCI1 | *trunk | *11-12,21-22 | *4092 | *- | 5 |
 | Ethernet20 | UNUSED1 | access | 50 | - | - | - |
 | Ethernet21 | UNUSED1 | access | 50 | - | - | - |
@@ -370,15 +369,10 @@ interface Ethernet2
    no switchport
    ip address 10.255.255.3/31
 !
-interface Ethernet3
-   description MLAG_DCX-LEAF1B_Ethernet3
-   no shutdown
-   channel-group 3 mode active
-!
 interface Ethernet4
    description MLAG_DCX-LEAF1B_Ethernet4
    no shutdown
-   channel-group 3 mode active
+   channel-group 4 mode active
 !
 interface Ethernet5
    description SERVER_DCX-leaf1-server1_PCI1
@@ -471,15 +465,15 @@ interface Ethernet30
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
-| Port-Channel3 | MLAG_DCX-LEAF1B_Port-Channel3 | trunk | - | - | MLAG | - | - | - | - |
+| Port-Channel4 | MLAG_DCX-LEAF1B_Port-Channel4 | trunk | - | - | MLAG | - | - | - | - |
 | Port-Channel5 | PortChannel DCX-leaf1-server1 | trunk | 11-12,21-22 | 4092 | - | - | - | 5 | - |
 
 #### Port-Channel Interfaces Device Configuration
 
 ```eos
 !
-interface Port-Channel3
-   description MLAG_DCX-LEAF1B_Port-Channel3
+interface Port-Channel4
+   description MLAG_DCX-LEAF1B_Port-Channel4
    no shutdown
    switchport mode trunk
    switchport trunk group MLAG

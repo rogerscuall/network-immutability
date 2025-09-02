@@ -37,13 +37,11 @@
 | ---- | ---- | -------------- | --------- | ----------| -------------- |
 | l3leaf | DCX-LEAF1A | Ethernet1 | spine | DCX-SPINE1 | Ethernet1 |
 | l3leaf | DCX-LEAF1A | Ethernet2 | spine | DCX-SPINE2 | Ethernet1 |
-| l3leaf | DCX-LEAF1A | Ethernet3 | mlag_peer | DCX-LEAF1B | Ethernet3 |
 | l3leaf | DCX-LEAF1A | Ethernet4 | mlag_peer | DCX-LEAF1B | Ethernet4 |
 | l3leaf | DCX-LEAF1B | Ethernet1 | spine | DCX-SPINE1 | Ethernet2 |
 | l3leaf | DCX-LEAF1B | Ethernet2 | spine | DCX-SPINE2 | Ethernet2 |
 | l3leaf | DCX-LEAF2A | Ethernet1 | spine | DCX-SPINE1 | Ethernet3 |
 | l3leaf | DCX-LEAF2A | Ethernet2 | spine | DCX-SPINE2 | Ethernet3 |
-| l3leaf | DCX-LEAF2A | Ethernet3 | mlag_peer | DCX-LEAF2B | Ethernet3 |
 | l3leaf | DCX-LEAF2A | Ethernet4 | mlag_peer | DCX-LEAF2B | Ethernet4 |
 | l3leaf | DCX-LEAF2B | Ethernet1 | spine | DCX-SPINE1 | Ethernet4 |
 | l3leaf | DCX-LEAF2B | Ethernet2 | spine | DCX-SPINE2 | Ethernet4 |
