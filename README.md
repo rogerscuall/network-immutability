@@ -1,6 +1,6 @@
 # Network Immutability
 
-This project was created to support my post in in [here]().
+This project was created to support my post "The Case for Immutable Network Configuration".
 This project is extremely limitted as support material for this post and it does not in anyway try to represent a correct configuration scenario.
 ![network-topology](images/network.png)
 
